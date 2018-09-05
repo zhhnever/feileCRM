@@ -56,8 +56,9 @@
                         <th width="80">老师</th>
                         <%--<th width="60 ">人数</th>--%>
                         <%--<th width="100">课程</th>--%>
+                        <th width="100">课程日期</th>
                         <th width="100">课程时间</th>
-                        <%--<th width="100">预约截止时间</th>--%>
+                    <%--<th width="100">预约截止时间</th>--%>
                         <th width="95">创建日期</th>
                         <%--<th width="95">更新日期</th>--%>
                         <th width="100">状态</th>
@@ -120,11 +121,19 @@
                 },
                 { "data": "id"},
                 { "data": "teacher"},
-                { "data": "date",
-                    render : function(data,type, row, meta) {
-                        return date(data);
+                { "data": "date"},
+                { "data": "reserveTime",
+                    render:function(data,type, row, meta){
+                        var html = "";
+                        if(data!="" && data){
+                            var time = data.split(',');
+                            time.forEach(function (value) {
+                                html +="<span class=\"label label-success radius td-status\" style='margin-right: 10px;margin-bottom: 5px'>"+value+"</span>"
+                            });
                     }
-                },
+
+                        return html;
+                }},
                 { "data": "createStamp",
                     render : function(data,type, row, meta) {
                         return date(data);

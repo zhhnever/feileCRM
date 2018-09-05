@@ -188,14 +188,19 @@ public class DtoUtil{
         TbCourse tbCourse = new TbCourse();
         tbCourse.setDate(courseDto.getDate());
         tbCourse.setTeacher(courseDto.getTeacher());
-        tbCourse.setReserveTime(courseDto.getReserveTime().toString());
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String a : courseDto.getReserveTime()){
+            stringBuilder.append(a);
+            stringBuilder.append(",");
+        }
+        tbCourse.setReserveTime(stringBuilder.toString().trim());
         tbCourse.setCreateStamp(courseDto.getCreateStamp());
         tbCourse.setUpdateStamp(courseDto.getUpdateStamp());
         return  tbCourse;
     }
     public static CourseReserveDto Reserve2ReserveDto(TbCourseReserve tbCourseReserve){
         CourseReserveDto courseReserveDto = new CourseReserveDto();
-        courseReserveDto.setCourseId(tbCourseReserve.getCourseId());
+        courseReserveDto.settId(tbCourseReserve.gettId());
         courseReserveDto.setOrderId(tbCourseReserve.getOrderId());
         courseReserveDto.setStatus(tbCourseReserve.getStatus());
         courseReserveDto.setStuId(tbCourseReserve.getStuId());

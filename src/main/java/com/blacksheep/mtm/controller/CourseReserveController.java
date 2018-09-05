@@ -34,10 +34,10 @@ public class CourseReserveController {
     public DataTablesResult getCourseList(int draw, int start, int length, int cid, @RequestParam("search[value]") String search,
                                           @RequestParam("order[0][column]") int orderCol, @RequestParam("order[0][dir]") String orderDir){
         //获取客户端需要排序的列
-        String[] cols = {"checkbox","id", "title", "teacher", "date", "status"};
+        String[] cols = {"checkbox","order_id", "teacher", "status"};
         String orderColumn = cols[orderCol];
         if(orderColumn == null) {
-            orderColumn = "createStamp";
+            orderColumn = "createTime";
         }
         //获取排序方式 默认为desc(asc)
         if(orderDir == null) {

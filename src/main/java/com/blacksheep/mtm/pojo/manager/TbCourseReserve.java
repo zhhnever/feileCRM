@@ -5,7 +5,7 @@ import java.util.Date;
 public class TbCourseReserve {
     private Integer orderId;
 
-    private Integer courseId;
+    private Integer tId;
 
     private Long stuId;
 
@@ -17,9 +17,9 @@ public class TbCourseReserve {
 
     private Date updateStamp;
 
-    public TbCourseReserve(Integer orderId, Integer courseId, Long stuId, Integer status, Date reserveTime, Date createStamp, Date updateStamp) {
+    public TbCourseReserve(Integer orderId, Integer tId, Long stuId, Integer status, Date reserveTime, Date createStamp, Date updateStamp) {
         this.orderId = orderId;
-        this.courseId = courseId;
+        this.tId = tId;
         this.stuId = stuId;
         this.status = status;
         this.reserveTime = reserveTime;
@@ -39,12 +39,12 @@ public class TbCourseReserve {
         this.orderId = orderId;
     }
 
-    public Integer getCourseId() {
-        return courseId;
+    public Integer gettId() {
+        return tId;
     }
 
-    public void setCourseId(Integer courseId) {
-        this.courseId = courseId;
+    public void settId(Integer courseId) {
+        this.tId = courseId;
     }
 
     public Long getStuId() {

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>钢琴培训</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.14.3/umd/popper.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.js"></script>
+</head>
+
+<body>
+    <!-- 顶部区域，包含了导航 -->
+    <header>
+        <div class="d-flex site-header flex-column flex-md-row align-items-center p-3 px-md-4 ">
+            <img class="my-0 mr-md-auto ml-4" src="./images/logo.png" width="314px"></img>
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" href="./index.html">首页</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">菲乐动态</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="./news_list.html">菲乐新闻</a>
+                        <a class="dropdown-item" href="./news_list.html?key=profile">活动信息</a>
+                        <a class="dropdown-item" href="./news_list.html?key=music">音乐信息</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./teacher.html">菲乐名师</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">钢琴课</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="./class.html#class1">科目一</a>
+                        <a class="dropdown-item" href="./class.html#class2">科目二</a>
+                        <a class="dropdown-item" href="./class.html#class3">科目三</a>
+                    </div>
+                </li>
+                <!-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">世界名琴</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">施坦威</a>
+                        <a class="dropdown-item" href="#">雅马哈</a>
+                        <a class="dropdown-item" href="#">卡哇伊</a>
+                    </div>
+                </li> -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">关于我们</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="./about.html">菲乐介绍</a>
+                        <a class="dropdown-item" href="./about.html?key=connect">联系我们</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link border" href="../register/index.html" target="_blank">试听课预约</a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <!-- <li data-target="#carouselExampleIndicators" data-slide-to="0" ></li> -->
+                <li data-target="#carouselExampleIndicators" data-slide-to="1" class="active"></li>
+            </ol>
+            <div class="carousel-inner">
+                <!-- <div class="carousel-item active">
+                    <img class="d-block w-100 img" src="images/img1.png" alt="First slide">
+                </div> -->
+                <div class="carousel-item active">
+                    <div class="d-block bg-img">
+                        <!-- <h1>专属私教 立即体验</h1>
+                        <p>
+                            菲乐钢琴艺术中心是为高端会员打造的定制式钢琴学习与交流俱乐部. 中心引进各类国际名琴与 国外成人钢琴权威教学法;打造适合各种基础钢琴学习教程.
+                        </p>-->
+                        <div class="linkApp">
+                            <a class="btnApp">立即体验试课APP</a>
+                            <span>or</span>
+                            <a class="cont" href="#">联 系 您 的 专 属 私 教</a>
+                        </div>
+                    </div>
+                    <!-- <img class="d-block w-100" src="..." alt="Second slide"> -->
+                    <!-- <img class="d-block w-100 img" src="images/img2.png"> -->
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </header>
+
+
+    <main role="main">
+
+        <!-- 关于我们 -->
+        <div class="container">
+            <div class="abourUs">
+                <h2 class="main-title mb-3">
+                    菲乐·资讯
+                    <span>INFORMATION</span>
+                </h2>
+                <div class="video">
+                    <video src="images/video.mp4" style="width: 100%;object-fit: fill" controls="controls">
+                        您的浏览器不支持 video 标签。
+                    </video>
+                </div>
+                <div class="news" style="">
+                    <ul class="nav nav-pills mb-4" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home"
+                                aria-selected="true">ALL</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact"
+                                aria-selected="true">资讯</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-tiyan-tab" data-toggle="pill" href="#pills-tiyan" role="tab" aria-controls="pills-tiyan" aria-selected="true">活动</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-huodong-tab" data-toggle="pill" href="#pills-huodong" role="tab" aria-controls="pills-huodong"
+                                aria-selected="true">音乐</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content pl-3 pr-3" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                            <ul style="list-style: none;">
+                                <li class="br">
+                                    <h2>如何让孩子喜欢弹钢琴</h2>
+                                    <p class="news-date">2017-09-23 </p>
+                                    <p>随着中国钢琴热的兴起，很多家长投重金让孩子学习钢琴，但效果却往往事与愿违。究竟是哪里出了问题？
+                                        <a href="">[详情]</a>
+                                    </p>
+                                </li>
+                                <li>
+                                    <h2>学钢琴之前需要做好哪些“功课”？</h2>
+                                    <p class="news-date">2017-09-23 </p>
+                                    <p>宝贝日后能否弹一手好钢琴，是很多年轻父母的梦想。但是，梦想能不能成真，则需要走一条漫长而艰苦的道路——孩子学琴，父母亲甚至伤透脑筋。
+                                        <a href="">[详情]</a>
+                                    </p>
+                                </li>
+                                <li>
+                                    <h2>学习钢琴可开发智力培养耐力</h2>
+                                    <p class="news-date">2017-10-20</p>
+                                    <p>学习钢琴是一个特别能够启发孩子智力的乐器之一，有条件的家长可以从小培养孩子学习钢琴，这样既能开发智力还能培养孩子的耐心。
+                                        <a href="">[详情]</a>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                <ul style="list-style: none;">
+                                        <li class="br">
+                                            <h2>如何让孩子喜欢弹钢琴</h2>
+                                            <p class="news-date">2017-09-23 </p>
+                                            <p>随着中国钢琴热的兴起，很多家长投重金让孩子学习钢琴，但效果却往往事与愿违。究竟是哪里出了问题？
+                                                <a href="">[详情]</a>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <h2>学钢琴之前需要做好哪些“功课”？</h2>
+                                            <p class="news-date">2017-09-23 </p>
+                                            <p>宝贝日后能否弹一手好钢琴，是很多年轻父母的梦想。但是，梦想能不能成真，则需要走一条漫长而艰苦的道路——孩子学琴，父母亲甚至伤透脑筋。
+                                                <a href="">[详情]</a>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <h2>学习钢琴可开发智力培养耐力</h2>
+                                            <p class="news-date">2017-10-20</p>
+                                            <p>学习钢琴是一个特别能够启发孩子智力的乐器之一，有条件的家长可以从小培养孩子学习钢琴，这样既能开发智力还能培养孩子的耐心。
+                                                <a href="">[详情]</a>
+                                            </p>
+                                        </li>
+                                    </ul>
+                        </div>
+                        <div class="tab-pane fade" id="pills-tiyan" role="tabpanel" aria-labelledby="pills-tiyan-tab">
+                        </div>
+                        <div class="tab-pane fade" id="pills-huodong" role="tabpanel" aria-labelledby="pills-huodong-tab">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="teachTeam mb-4">
+                <h2 class="main-title">
+                    菲乐·名师
+                    <span>TEACHER</span>
+                </h2>
+                <div class="card-deck">
+                    <div class="card  text-center">
+                        <img class="card-img-top " src="./images/huiteni.png" alt="Card image cap">
+                        <div>
+                            <h5 class="card-title">查新雷 or Charlie</h5>
+                            <p class="card-text">
+                                <small class="text-muted">钢琴教授</small>
+                            </p>
+
+                            <p class="card-text">
+                                <small class="text-muted">擅长领域：即兴伴奏、音乐创作、视唱练耳教学</small>
+                            </p>
+                            <!-- <a href="#" class="border rounded-circle bg-qq"></a>
+                            <a href="#" class="border rounded-circle bg-weixin"></a>
+                            <a href="#" class="border rounded-circle bg-weibo"></a> -->
+
+                        </div>
+                    </div>
+                    <div class="card  text-center">
+                        <img class="card-img-top" src="./images/huiteni.png" alt="Card image cap">
+                        <div>
+                            <h5 class="card-title">韩龙福 or Han</h5>
+                            <p class="card-text">
+                                <small class="text-muted">教学副主管</small>
+                            </p>
+                            <p class="card-text">
+                                <small class="text-muted">擅长领域：即兴伴奏、乐理、作曲创作</small>
+                            </p>
+                            <!-- <a href="#" class="border rounded-circle bg-qq"></a>
+                            <a href="#" class="border rounded-circle bg-weixin"></a>
+                            <a href="#" class="border rounded-circle bg-weibo"></a> -->
+                        </div>
+                    </div>
+                    <div class="card  text-center">
+                        <img class="card-img-top" src="./images/huiteni.png" alt="Card image cap">
+                        <div>
+                            <h5 class="card-title">李老师 or Li</h5>
+                            <p class="card-text">
+                                <small class="text-muted">教学副主管</small>
+                            </p>
+                            <p class="card-text">
+                                <small class="text-muted">擅长领域：即兴伴奏、乐理、作曲创作</small>
+                            </p>
+                            <!-- <a href="#" class="border rounded-circle bg-qq"></a>
+                            <a href="#" class="border rounded-circle bg-weixin"></a>
+                            <a href="#" class="border rounded-circle bg-weibo"></a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gangqin">
+            <h2 class="text-center">菲乐·名琴</h2>
+            <div class="container">
+                <div class="row mt-5">
+                    <div class="col-md-6">
+                        <div class="card text-right flex-md-row mb-4">
+                            <div class="card-body d-flex flex-column ">
+                                <h5 class="card-title text-right">Grand piano 三角形钢琴</h5>
+                                <p class="card-text">三角形钢琴是钢琴最原始的形态,一般都用于音乐会的演奏,是一件笨重的庞然大物</p>
+
+                            </div>
+                            <img class="flex-auto d-none d-md-block" src="./images/gangqin1.png">
+
+
+                        </div>
+                        <div class="card text-right flex-md-row mb-4">
+                            <div class="card-body d-flex flex-column ">
+                                <h5 class="card-title text-right">Upright piano 立式钢琴</h5>
+                                <p class="card-text">立式钢琴才用了一种琴弦交错安装的设计方案,有效的解决了空间上的要求和音色音量的平衡问题</p>
+                            </div>
+
+                            <img class="flex-auto d-none d-md-block" src="./images/gangqin2.png">
+
+
+                        </div>
+                        <div class="card text-right flex-md-row mb-4">
+                            <div class="card-body d-flex flex-column ">
+                                <h5 class="card-title text-right">Electronical piano 电子琴</h5>
+                                <p class="card-text">电钢琴,是一种电声乐器,它是二十世纪六七十年代兴起,八十年代至九十年代早期流行的一种用于在某些场合代替钢琴的乐器</p>
+
+                            </div>
+
+                            <img class="flex-auto d-none d-md-block" src="./images/gangqin3.png">
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container-fluid fuwu">
+            <div class="fuwu-box py-3">
+                <img src="./images/fuwu.png" alt="">
+                <div class="d-inline-block ml-5 mr-5" style="vertical-align: middle;">
+                    <p>为您精心计划世界一流钢琴品牌和服务</p>
+                    <p>Plan your world-class piano brands and services carefully</p>
+                </div>
+                <a href="" class="d-inline-block">SEE MORE</a>
+            </div>
+        </div>
+        <div class="container tese mt-5 mb-5">
+            <div class="card-deck text-center">
+                <div class="card">
+                    <img class="card-img-top" width="78px" src="./images/ftfx.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">菲同凡响</h5>
+                        <p class="card-text mb-0">菲乐的特色服务</p>
+                        <p class="card-text">
+                            <small class="text-muted">Feelwell offers you special services</small>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img class="card-img-top" width="78px" src="./images/fwjg.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">服务机构</h5>
+                        <p class="card-text mb-0">菲乐的服务机构</p>
+                        <p class="card-text">
+                            <small class="text-muted">Feelwell 's service agencies</small>
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" width="78px" src="./images/zpsx.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">作品赏析</h5>
+                        <p class="card-text mb-0">学员作品赏析</p>
+                        <p class="card-text">
+                            <small class="text-muted">Appreciation the Works of Students</small>
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" width="78px" src="./images/ryziz.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">荣誉资质</h5>
+                        <p class="card-text mb-0">导师与学员荣誉</p>
+                        <p class="card-text">
+                            <small class="text-muted">Mentor and student honor</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 教师团队 -->
+
+
+
+        <footer class="foot">
+            <div class="container">
+                <h3 class="foot-title">联系方式·地址</h2>
+
+                    <div class="row ">
+                        <div class="col-sm-6">
+                            <p class="foot-text">感谢您来菲乐钢琴网站,若您需要了解详情,请您为我们留言或使用以下方式联系我们,我们将尽快给您回复,并为您提供最真诚的服务</p>
+                            <div class="foot-connect">
+                                <span>
+                                    <img src="./images/sj.png" alt="" srcset="">400-8888-8888</span>
+                                <span>
+                                    <img src="./images/email.png" alt="" srcset="">feile@foxmail.com</span>
+                                <span>
+                                    <img src="./images/dw.png" alt="" srcset="">湖南省长沙市芙蓉区乐和城B1楼菲乐钢琴（地铁口附近）</span>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6 foot-wx">
+                                    <h3>官方微信</h3>
+                                    <img src="./images/weixin.png" alt="">
+                                    <p>扫二维码关注</p>
+                                    <p>菲乐琴行</p>
+                                    <p>官方微信</p>
+                                </div>
+                                <div class="col-sm-6 foot-weibo ">
+                                    <h3>微博</h3>
+                                    <img class="rounded-circle" src="./images/logo.jpg" alt="">
+                                    <div>
+                                        <p>菲乐文化传播</p>
+                                        <a href="">+加关注</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <form action="">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">姓名 NAME</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder=" ">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">电话 PHONE</label>
+                                    <input type="text" class="form-control " id="exampleInputPassword1" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">留言 MESSAGE</label>
+                                    <textarea type="text" class="form-control " rows="6" placeholder=""></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <a class="send" href="">SEND</a>
+            </div>
+        </footer>
+
+        <div id="clan-slider">
+            <ul>
+                <!-- <li class="hidden-xs">
+                    <a id="slider-chat" class="web-chat" href="javascript:;"></a>
+                    <div class="clan-slider-tips">
+                      在线咨询
+                    </div>
+                  </li> -->
+                <li class="hidden-xs">
+                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2404050895&amp;site=qq&amp;menu=yes" id="slider-qq"></a>
+                    <div class="clan-slider-tips">
+                        QQ在线咨询
+                    </div>
+                </li>
+                <li class="hidden-xs">
+                    <a id="slider-phone" href="javascript:void(0);"></a>
+                    <div class="clan-slider-tips">
+                        0731-88888888
+                    </div>
+                </li>
+                <li class="hidden-xs">
+                    <a id="slider-wechat" href="javascript:void(0);"></a>
+                    <div class="clan-slider-tips-wechat">
+                        <img src="./images/weixin.png">
+                    </div>
+                </li>
+                <li>
+                    <a id="slider-goTop" href="javascript:void(0);" style="display: block;"></a>
+                </li>
+                <!--
+                      <li class="visible-xs-block">
+                          <a id="slider-menu" href="javascript:void(0);"></a>
+                      </li>
+                      -->
+            </ul>
+        </div>
+    </main>
+    <script>
+        
+        $(function () {
+            $.ajax({
+                url: '/news/list/all',
+                method: 'get',
+                data: {
+                    cid: -1,
+                    draw: 1,
+                    start: 0,
+                    length: 8,
+                    'search[value]': '',
+                    'order[0][column]': 0,
+                    'order[0][dir]': '',
+                },
+                success: function (result) {
+                    if (result.data && result.data.length > 0) {
+                        $('#pills-home').html('');
+                        let news = result.data
+                        let temp = ''
+                        let start = '<div class="card-deck">'
+                        let end = '</div>'
+                        for (let i = 0; i < 8; i++) {
+                            let image, ele
+                            if (news[i]) {
+                                image = news[i].pic ? `/upload/${news[i].pic}` :
+                                    "./images/stu1.png"
+                                ele =
+                                    `<div class="card"><img width="100%" src="${image}" alt="Card image cap"><div><p class="card-text pt-1">${news[i].title}</p><p class="card-text">
+					<small class="text-muted">${ new Date(news[i].createStamp).format('yy:MM:dd hh:mm:ss')}</small></p> </div></div>`
+                            } else {
+                                image = "./images/timg.jpg"
+                                ele =
+                                    `<div class="card"><img width="100%" src="${image}" alt="Card image cap"><div><p class="card-text pt-1"></p><p class="card-text">
+						<small class="text-muted"></small></p> </div></div>`
+                            }
+
+                            if (i % 4 === 0) {
+                                $('#pills-home').append(temp)
+                                temp = ''
+                                temp = temp + start + ele
+                            } else if (i % 4 === 3) {
+                                temp = temp + ele + end
+                            } else {
+                                temp = temp + ele
+                            }
+                            if (i === 7) {
+                                $('#pills-home').append(temp)
+                                $('#pills-home').append(
+                                    `<div class="w-100" style="min-height: 30px"><a class="active float-right" style="display: block" href="#">SEE MORE</a></div>`
+                                )
+                            }
+                        }
+                    }
+
+                }
+            })
+
+        })
+    </script>
+</body>
+
+</html>

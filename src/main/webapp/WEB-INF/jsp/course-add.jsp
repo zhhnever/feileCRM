@@ -135,7 +135,7 @@
         focusCleanup:false,
         success:"valid",
         submitHandler:function(form){
-//            var index = layer.load(3);
+           var index = layer.load(3);
             var reserveTime = []
             $.each($('input:checkbox'),function(){
                 if(this.checked){
@@ -152,7 +152,7 @@
                     layer.close(index);
                     if(data.success==true){
                         if(parent.location.pathname!='/'){
-                            parent.productCount();
+                            // parent.productCount();
                             parent.refresh();
                             parent.msgSuccess("添加成功!");
                             var index = parent.layer.getFrameIndex(window.name);
@@ -167,12 +167,10 @@
                         }
                     }else{
                         layer.alert(data.message, {title: '错误信息',icon: 2});
-                        parent.layer.close(index);
                     }
                 },
                 error:function(XMLHttpRequest) {
                     layer.close(index);
-                    parent.layer.close(index);
                     layer.alert('数据处理失败! 错误码:'+XMLHttpRequest.status,{title: '错误信息',icon: 2});
                 }
             });

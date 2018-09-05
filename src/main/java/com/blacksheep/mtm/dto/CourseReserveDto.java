@@ -6,9 +6,9 @@ import java.util.Date;
 public class CourseReserveDto implements Serializable {
     private Integer orderId;
 
-    private Integer courseId;
+    private Integer tId;
 
-    private String courseName;
+    private String tName;
 
     private Long stuId;
 
@@ -30,20 +30,20 @@ public class CourseReserveDto implements Serializable {
         this.orderId = orderId;
     }
 
-    public Integer getCourseId() {
-        return courseId;
+    public Integer gettId() {
+        return tId;
     }
 
-    public void setCourseId(Integer courseId) {
-        this.courseId = courseId;
+    public void settId(Integer tId) {
+        this.tId = tId;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public String gettName() {
+        return tName;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void settName(String tName) {
+        this.tName = tName;
     }
 
     public Long getStuId() {

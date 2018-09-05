@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -63,8 +64,11 @@ public class WxController {
                     LOGGER.error("Failed to verify the signature!");
                 }
             }else {
+
                 String respMessage = "异常消息！";
+
                 try {
+//                    respMessage = wechatService.weixinPost(request);
                     out.write(respMessage);
                     LOGGER.info("The request completed successfully");
                     LOGGER.info("to weixin server "+respMessage);
@@ -111,7 +115,6 @@ public class WxController {
         result.setMessage("认证失败");
         return result;
     }
-
 
     @RequestMapping("/mini/jscode2session")
     @ResponseBody

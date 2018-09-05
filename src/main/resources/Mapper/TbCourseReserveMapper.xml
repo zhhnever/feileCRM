@@ -4,8 +4,10 @@
   <resultMap id="BaseResultMap" type="com.blacksheep.mtm.pojo.manager.TbCourseReserve">
     <constructor>
       <idArg column="order_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="course_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="stu_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="stu_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="t_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="t_name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="reserve_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="create_stamp" javaType="java.util.Date" jdbcType="TIMESTAMP" />
@@ -13,7 +15,7 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    order_id, course_id, stu_id, status, reserve_time, create_stamp, update_stamp
+    order_id, stu_id,stu_name,t_id,t_name, status, reserve_time, create_stamp, update_stamp
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -26,12 +28,11 @@
     where order_id = #{orderId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.blacksheep.mtm.pojo.manager.TbCourseReserve">
-    insert into tb_course_reserve (order_id, course_id, stu_id, 
+    insert into tb_course_reserve (order_id, stu_id,stu_name,t_id,t_name
       status, reserve_time, create_stamp, 
       update_stamp)
-    values (#{orderId,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, #{stuId,jdbcType=INTEGER}, 
-      #{status,jdbcType=INTEGER}, #{reserveTime,jdbcType=TIMESTAMP}, #{createStamp,jdbcType=TIMESTAMP}, 
-      #{updateStamp,jdbcType=TIMESTAMP})
+    values (#{orderId,jdbcType=INTEGER}, #{stuId,jdbcType=INTEGER}, #{stuName,jdbcType=VARCHAR}, #{tId,jdbcType=INTEGER},#{tName,jdbcType=VARCHAR},
+      #{status,jdbcType=INTEGER}, #{reserveTime,jdbcType=TIMESTAMP}, now(),now())
   </insert>
   <insert id="insertSelective" parameterType="com.blacksheep.mtm.pojo.manager.TbCourseReserve">
     insert into tb_course_reserve
@@ -39,11 +40,17 @@
       <if test="orderId != null">
         order_id,
       </if>
-      <if test="courseId != null">
-        course_id,
-      </if>
       <if test="stuId != null">
         stu_id,
+      </if>
+      <if test="stuName != null">
+        stu_name,
+      </if>
+      <if test="tId != null">
+        t_id,
+      </if>
+      <if test="tName != null">
+        t_name,
       </if>
       <if test="status != null">
         status,
@@ -51,22 +58,24 @@
       <if test="reserveTime != null">
         reserve_time,
       </if>
-      <if test="createStamp != null">
         create_stamp,
-      </if>
-      <if test="updateStamp != null">
         update_stamp,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="orderId != null">
         #{orderId,jdbcType=INTEGER},
       </if>
-      <if test="courseId != null">
-        #{courseId,jdbcType=INTEGER},
-      </if>
       <if test="stuId != null">
         #{stuId,jdbcType=INTEGER},
+      </if>
+      <if test="stuName != null">
+        #{stuName,jdbcType=VARCHAR},
+      </if>
+      <if test="tId != null">
+        #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="tName != null">
+        #{tName,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -74,22 +83,24 @@
       <if test="reserveTime != null">
         #{reserveTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="createStamp != null">
-        #{createStamp,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateStamp != null">
-        #{updateStamp,jdbcType=TIMESTAMP},
-      </if>
+        now(),
+        now(),
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.blacksheep.mtm.pojo.manager.TbCourseReserve">
     update tb_course_reserve
     <set>
-      <if test="courseId != null">
-        course_id = #{courseId,jdbcType=INTEGER},
-      </if>
       <if test="stuId != null">
         stu_id = #{stuId,jdbcType=INTEGER},
+      </if>
+      <if test="stuName != null">
+        stu_name = #{tId,jdbcType=VARCHAR},
+      </if>
+      <if test="tId != null">
+        t_id = #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="tName != null">
+        t_name = #{tName,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
@@ -100,20 +111,33 @@
       <if test="createStamp != null">
         create_stamp = #{createStamp,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateStamp != null">
-        update_stamp = #{updateStamp,jdbcType=TIMESTAMP},
-      </if>
+        update_stamp = now()
     </set>
     where order_id = #{orderId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.blacksheep.mtm.pojo.manager.TbCourseReserve">
     update tb_course_reserve
-    set course_id = #{courseId,jdbcType=INTEGER},
+    set
       stu_id = #{stuId,jdbcType=INTEGER},
+      t_id = #{tId,jdbcType=INTEGER},
+      stu_name = #{stuName,jdbcType=VARCHAR},
+      t_name = #{tName,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       reserve_time = #{reserveTime,jdbcType=TIMESTAMP},
       create_stamp = #{createStamp,jdbcType=TIMESTAMP},
       update_stamp = #{updateStamp,jdbcType=TIMESTAMP}
     where order_id = #{orderId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectItemByCondition" resultMap="BaseResultMap">
+    SELECT * FROM tb_course_reserve
+    WHERE (
+    t_name LIKE #{search}
+    OR
+    stu_name LIKE #{search})
+    ORDER BY
+    ${orderCol}
+    ${orderDir}
+  </select>
+
 </mapper>

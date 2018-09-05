@@ -104,7 +104,8 @@
             <dt><i class="Hui-iconfont">&#xe665;</i> 课程排期管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="course-list" data-title="课程排期管理" href="javascript:void(0)">课程排期管理</a></li>
+                    <li><a data-href="course-list" data-title="课程排期" href="javascript:void(0)">课程排期</a></li>
+                    <li><a data-href="course-reserve-list" data-title="学生预约" href="javascript:void(0)">学生预约列表</a></li>
                 </ul>
             </dd>
         </dl>

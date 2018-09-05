@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>钢琴培训</title>
+  <link rel="stylesheet" href="style/style.css">
+  <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.js"></script>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+
+
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #ed3da1">
+      <a class="navbar-brand" href="#">XX培训</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item ">
+            <a class="nav-link" href="index.html">首页
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">关于我们</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="jiaoxue.html">培训课程</a>
+            <span class="sr-only">(current)</span>
+
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="kaoshi.html">考级报名</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="./connect.html">联系我们</a>
+          </li>
+        </ul>
+        <form class="form-inline mt-2 mt-md-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="搜索" aria-label="搜索">
+          <button class="btn  my-2 my-sm-0" type="submit">搜索</button>
+        </form>
+      </div>
+    </nav>
+  </header>
+  <main role="main">
+    <div class="banner">
+      <img src="images/contactBanner.png" width="100%" alt="">
+    </div>
+    <div class="container">
+      <div class="abourUs">
+        <h2 class="left">
+          联系我们
+          <span>CONTACT</span>
+        </h2>
+        <div class="signPart">
+          <ul style="list-style: none;">
+            <li>手机 ：13000000000</li>
+            <li>邮编 ：100000</li>
+            <li>电话 ：020-00000000</li>
+            <li>地址 ：XXX省XXX市XXX路XXX号</li>
+            <li>传真 ：020-00000000</li>
+            <li>邮箱 ：contact@fksdjkhsf.co</li>
+          </ul>
+          <div style="width:100%;height:550px;border:#ccc solid 1px;" id="dituContent"></div>
+          <!--引用百度地图API-->
+
+
+        </div>
+      </div>
+    </div>
+
+    <footer class="foot">
+      <div class="container">
+        <div class="row ">
+          <div class="col-sm-4">
+            <div class="media">
+              <img class="mr-3" src="images/footer1.png" alt="Generic placeholder image">
+              <div class="media-body">
+                <p>公司电话：</p>
+                <p>020-0000000</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="media">
+              <img class="mr-3" src="images/footer2.png" alt="Generic placeholder image">
+              <div class="media-body">
+                <p>公司邮箱：</p>
+                <p>contact@fkadjkhsf.com</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="media">
+              <img class="mr-3" src="images/footer2.png" alt="Generic placeholder image">
+              <div class="media-body">
+                <p>公司地址：</p>
+                <p>XXX省XXX市XXX县XXX路XXX号</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+  <script type="text/javascript">
+    //创建和初始化地图函数：
+    function initMap() {
+      createMap(); //创建地图
+      setMapEvent(); //设置地图事件
+      addMapControl(); //向地图添加控件
+    }
+
+    //创建地图函数：
+    function createMap() {
+      var map = new BMap.Map("dituContent"); //在百度地图容器中创建一个地图
+      var point = new BMap.Point(113.0003, 28.061668); //定义一个中心点坐标
+      map.centerAndZoom(point, 17); //设定地图的中心点和坐标并将地图显示在地图容器中
+      window.map = map; //将map变量存储在全局
+    }
+
+    //地图事件设置函数：
+    function setMapEvent() {
+      map.enableDragging(); //启用地图拖拽事件，默认启用(可不写)
+      map.enableScrollWheelZoom(); //启用地图滚轮放大缩小
+      map.enableDoubleClickZoom(); //启用鼠标双击放大，默认启用(可不写)
+      map.enableKeyboard(); //启用键盘上下左右键移动地图
+    }
+
+    //地图控件添加函数：
+    function addMapControl() {
+      //向地图中添加缩放控件
+      var ctrl_nav = new BMap.NavigationControl({
+        anchor: BMAP_ANCHOR_TOP_LEFT,
+        type: BMAP_NAVIGATION_CONTROL_LARGE
+      });
+      map.addControl(ctrl_nav);
+      //向地图中添加缩略图控件
+      var ctrl_ove = new BMap.OverviewMapControl({
+        anchor: BMAP_ANCHOR_BOTTOM_RIGHT,
+        isOpen: 1
+      });
+      map.addControl(ctrl_ove);
+      //向地图中添加比例尺控件
+      var ctrl_sca = new BMap.ScaleControl({
+        anchor: BMAP_ANCHOR_BOTTOM_LEFT
+      });
+      map.addControl(ctrl_sca);
+    }
+
+
+    initMap(); //创建和初始化地图
+  </script>
+
+</body>
+
+</html>
