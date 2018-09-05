@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blacksheep.mtm.dao.TbCourseReserveMapper">
+  <resultMap id="BaseResultMap" type="com.blacksheep.mtm.pojo.manager.TbCourseReserve">
+    <constructor>
+      <idArg column="order_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="course_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="stu_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="reserve_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="create_stamp" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_stamp" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_id, course_id, stu_id, status, reserve_time, create_stamp, update_stamp
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_course_reserve
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_course_reserve
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blacksheep.mtm.pojo.manager.TbCourseReserve">
+    insert into tb_course_reserve (order_id, course_id, stu_id, 
+      status, reserve_time, create_stamp, 
+      update_stamp)
+    values (#{orderId,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, #{stuId,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{reserveTime,jdbcType=TIMESTAMP}, #{createStamp,jdbcType=TIMESTAMP}, 
+      #{updateStamp,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blacksheep.mtm.pojo.manager.TbCourseReserve">
+    insert into tb_course_reserve
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="courseId != null">
+        course_id,
+      </if>
+      <if test="stuId != null">
+        stu_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="reserveTime != null">
+        reserve_time,
+      </if>
+      <if test="createStamp != null">
+        create_stamp,
+      </if>
+      <if test="updateStamp != null">
+        update_stamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="courseId != null">
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="stuId != null">
+        #{stuId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="reserveTime != null">
+        #{reserveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStamp != null">
+        #{createStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStamp != null">
+        #{updateStamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blacksheep.mtm.pojo.manager.TbCourseReserve">
+    update tb_course_reserve
+    <set>
+      <if test="courseId != null">
+        course_id = #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="stuId != null">
+        stu_id = #{stuId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="reserveTime != null">
+        reserve_time = #{reserveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStamp != null">
+        create_stamp = #{createStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStamp != null">
+        update_stamp = #{updateStamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blacksheep.mtm.pojo.manager.TbCourseReserve">
+    update tb_course_reserve
+    set course_id = #{courseId,jdbcType=INTEGER},
+      stu_id = #{stuId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      reserve_time = #{reserveTime,jdbcType=TIMESTAMP},
+      create_stamp = #{createStamp,jdbcType=TIMESTAMP},
+      update_stamp = #{updateStamp,jdbcType=TIMESTAMP}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+</mapper>

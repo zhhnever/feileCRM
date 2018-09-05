@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blacksheep.mtm.dao.TbNewsDescMapper">
+  <resultMap id="BaseResultMap" type="com.blacksheep.mtm.pojo.manager.TbNewsDesc">
+    <constructor>
+      <idArg column="news_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="create_stamp" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_stamp" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.blacksheep.mtm.pojo.manager.TbNewsDesc">
+    <constructor>
+      <idArg column="news_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="create_stamp" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_stamp" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="news_desc" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    news_id, create_stamp, update_stamp
+  </sql>
+  <sql id="Blob_Column_List">
+    news_desc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_news_desc
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_news_desc
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blacksheep.mtm.pojo.manager.TbNewsDesc">
+    insert into tb_news_desc (news_id, create_stamp, update_stamp, 
+      news_desc)
+    values (#{newsId,jdbcType=INTEGER},now(),now(),
+      #{newsDesc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blacksheep.mtm.pojo.manager.TbNewsDesc">
+    insert into tb_news_desc
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="newsId != null">
+        news_id,
+      </if>
+      <if test="newsDesc != null">
+        news_desc,
+      </if>
+      create_stamp,
+      update_stamp,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="newsId != null">
+        #{newsId,jdbcType=INTEGER},
+      </if>
+      <if test="newsDesc != null">
+        #{newsDesc,jdbcType=LONGVARCHAR},
+      </if>
+      now(),now()
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blacksheep.mtm.pojo.manager.TbNewsDesc">
+    update tb_news_desc
+    <set>
+      <if test="createStamp != null">
+        create_stamp = #{createStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newsDesc != null">
+        news_desc = #{newsDesc,jdbcType=LONGVARCHAR},
+      </if>
+      update_stamp = now()
+    </set>
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.blacksheep.mtm.pojo.manager.TbNewsDesc">
+    update tb_news_desc
+    set create_stamp = #{createStamp,jdbcType=TIMESTAMP},
+      update_stamp = now(),
+      news_desc = #{newsDesc,jdbcType=LONGVARCHAR}
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blacksheep.mtm.pojo.manager.TbNewsDesc">
+    update tb_news_desc
+    set create_stamp = #{createStamp,jdbcType=TIMESTAMP},
+      update_stamp = now(),
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </update>
+</mapper>

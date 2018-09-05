@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blacksheep.mtm.dao.TbReserveCommentMapper">
+  <resultMap id="BaseResultMap" type="com.blacksheep.mtm.pojo.manager.TbReserveComment">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="reserve_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="comment_stars" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="create_stamp" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_stamp" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.blacksheep.mtm.pojo.manager.TbReserveCommentWithBLOBs">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="reserve_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="comment_stars" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="create_stamp" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_stamp" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="comment" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+      <arg column="class_content" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+      <arg column="class_question" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+      <arg column="work" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, reserve_id, comment_stars, create_stamp, update_stamp
+  </sql>
+  <sql id="Blob_Column_List">
+    comment, class_content, class_question, work
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_reserve_comment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_reserve_comment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blacksheep.mtm.pojo.manager.TbReserveCommentWithBLOBs">
+    insert into tb_reserve_comment (id, reserve_id, comment_stars, 
+      create_stamp, update_stamp, comment, 
+      class_content, class_question, work
+      )
+    values (#{id,jdbcType=INTEGER}, #{reserveId,jdbcType=INTEGER}, #{commentStars,jdbcType=INTEGER}, 
+      #{createStamp,jdbcType=TIMESTAMP}, #{updateStamp,jdbcType=TIMESTAMP}, #{comment,jdbcType=LONGVARCHAR}, 
+      #{classContent,jdbcType=LONGVARCHAR}, #{classQuestion,jdbcType=LONGVARCHAR}, #{work,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blacksheep.mtm.pojo.manager.TbReserveCommentWithBLOBs">
+    insert into tb_reserve_comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="reserveId != null">
+        reserve_id,
+      </if>
+      <if test="commentStars != null">
+        comment_stars,
+      </if>
+      <if test="createStamp != null">
+        create_stamp,
+      </if>
+      <if test="updateStamp != null">
+        update_stamp,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+      <if test="classContent != null">
+        class_content,
+      </if>
+      <if test="classQuestion != null">
+        class_question,
+      </if>
+      <if test="work != null">
+        work,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="reserveId != null">
+        #{reserveId,jdbcType=INTEGER},
+      </if>
+      <if test="commentStars != null">
+        #{commentStars,jdbcType=INTEGER},
+      </if>
+      <if test="createStamp != null">
+        #{createStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStamp != null">
+        #{updateStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="classContent != null">
+        #{classContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="classQuestion != null">
+        #{classQuestion,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="work != null">
+        #{work,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blacksheep.mtm.pojo.manager.TbReserveCommentWithBLOBs">
+    update tb_reserve_comment
+    <set>
+      <if test="reserveId != null">
+        reserve_id = #{reserveId,jdbcType=INTEGER},
+      </if>
+      <if test="commentStars != null">
+        comment_stars = #{commentStars,jdbcType=INTEGER},
+      </if>
+      <if test="createStamp != null">
+        create_stamp = #{createStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStamp != null">
+        update_stamp = #{updateStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="classContent != null">
+        class_content = #{classContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="classQuestion != null">
+        class_question = #{classQuestion,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="work != null">
+        work = #{work,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.blacksheep.mtm.pojo.manager.TbReserveCommentWithBLOBs">
+    update tb_reserve_comment
+    set reserve_id = #{reserveId,jdbcType=INTEGER},
+      comment_stars = #{commentStars,jdbcType=INTEGER},
+      create_stamp = #{createStamp,jdbcType=TIMESTAMP},
+      update_stamp = #{updateStamp,jdbcType=TIMESTAMP},
+      comment = #{comment,jdbcType=LONGVARCHAR},
+      class_content = #{classContent,jdbcType=LONGVARCHAR},
+      class_question = #{classQuestion,jdbcType=LONGVARCHAR},
+      work = #{work,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blacksheep.mtm.pojo.manager.TbReserveComment">
+    update tb_reserve_comment
+    set reserve_id = #{reserveId,jdbcType=INTEGER},
+      comment_stars = #{commentStars,jdbcType=INTEGER},
+      create_stamp = #{createStamp,jdbcType=TIMESTAMP},
+      update_stamp = #{updateStamp,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

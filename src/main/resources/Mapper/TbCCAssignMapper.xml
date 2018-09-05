@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blacksheep.mtm.dao.TbCCAssignMapper">
+  <resultMap id="BaseResultMap" type="com.blacksheep.mtm.pojo.TbCCAssign">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="cc_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="state" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="creater_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, cc_id, state, creater_id, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_cc_assign
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_cc_assign
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blacksheep.mtm.pojo.TbCCAssign">
+    insert into tb_cc_assign (id, cc_id, state, 
+      creater_id, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{ccId,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
+      #{createrId,jdbcType=INTEGER}, now(), now()
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blacksheep.mtm.pojo.TbCCAssign">
+    insert into tb_cc_assign
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="ccId != null">
+        cc_id,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="createrId != null">
+        creater_id,
+      </if>
+        create_time,
+        update_time
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ccId != null">
+        #{ccId,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createrId != null">
+        #{createrId,jdbcType=INTEGER},
+      </if>
+        now(),
+        now()
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blacksheep.mtm.pojo.TbCCAssign">
+    update tb_cc_assign
+    <set>
+      <if test="ccId != null">
+        cc_id = #{ccId,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createrId != null">
+        creater_id = #{createrId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+        update_time = now()
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blacksheep.mtm.pojo.TbCCAssign">
+    update tb_cc_assign
+    set cc_id = #{ccId,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      creater_id = #{createrId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #now()
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectListByCCIdToday" resultMap="BaseResultMap">
+    SELECT * FROM tb_cc_assign WHERE cc_id = #{ccId,jdbcType=INTEGER} and date(create_time) = curdate() order by create_time desc
+  </select>
+
+  <select id="countByCCIdToday" resultType="integer">
+    SELECT count(0) FROM tb_cc_assign WHERE cc_id = #{ccId,jdbcType=INTEGER} and date(create_time) = curdate()
+  </select>
+</mapper>

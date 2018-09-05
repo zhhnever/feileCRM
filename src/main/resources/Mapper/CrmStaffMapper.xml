@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blacksheep.mtm.dao.CrmStaffMapper">
+  <resultMap id="BaseResultMap" type="com.blacksheep.mtm.pojo.manager.CrmStaff">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="e_code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_teacher" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="sex" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="age" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="birth_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="address" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="wx_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="in_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="status" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_stamp" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_stamp" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, e_code, is_teacher, sex, age, birth_date, address, wx_id, in_time, status, 
+    create_stamp, update_stamp
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_staff
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from crm_staff
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blacksheep.mtm.pojo.manager.CrmStaff">
+    insert into crm_staff (id, name, e_code, 
+      is_teacher, sex, age, 
+      birth_date, address, wx_id, 
+      in_time, status, create_stamp, 
+      update_stamp)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{eCode,jdbcType=VARCHAR}, 
+      #{isTeacher,jdbcType=TINYINT}, #{sex,jdbcType=TINYINT}, #{age,jdbcType=INTEGER}, 
+      #{birthDate,jdbcType=TIMESTAMP}, #{address,jdbcType=VARCHAR}, #{wxId,jdbcType=VARCHAR}, 
+      #{inTime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, #{createStamp,jdbcType=TIMESTAMP}, 
+      #{updateStamp,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blacksheep.mtm.pojo.manager.CrmStaff">
+    insert into crm_staff
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="eCode != null">
+        e_code,
+      </if>
+      <if test="isTeacher != null">
+        is_teacher,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="birthDate != null">
+        birth_date,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="wxId != null">
+        wx_id,
+      </if>
+      <if test="inTime != null">
+        in_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createStamp != null">
+        create_stamp,
+      </if>
+      <if test="updateStamp != null">
+        update_stamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="eCode != null">
+        #{eCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isTeacher != null">
+        #{isTeacher,jdbcType=TINYINT},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="birthDate != null">
+        #{birthDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="wxId != null">
+        #{wxId,jdbcType=VARCHAR},
+      </if>
+      <if test="inTime != null">
+        #{inTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createStamp != null">
+        #{createStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStamp != null">
+        #{updateStamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blacksheep.mtm.pojo.manager.CrmStaff">
+    update crm_staff
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="eCode != null">
+        e_code = #{eCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isTeacher != null">
+        is_teacher = #{isTeacher,jdbcType=TINYINT},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="birthDate != null">
+        birth_date = #{birthDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="wxId != null">
+        wx_id = #{wxId,jdbcType=VARCHAR},
+      </if>
+      <if test="inTime != null">
+        in_time = #{inTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createStamp != null">
+        create_stamp = #{createStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStamp != null">
+        update_stamp = #{updateStamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blacksheep.mtm.pojo.manager.CrmStaff">
+    update crm_staff
+    set name = #{name,jdbcType=VARCHAR},
+      e_code = #{eCode,jdbcType=VARCHAR},
+      is_teacher = #{isTeacher,jdbcType=TINYINT},
+      sex = #{sex,jdbcType=TINYINT},
+      age = #{age,jdbcType=INTEGER},
+      birth_date = #{birthDate,jdbcType=TIMESTAMP},
+      address = #{address,jdbcType=VARCHAR},
+      wx_id = #{wxId,jdbcType=VARCHAR},
+      in_time = #{inTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      create_stamp = #{createStamp,jdbcType=TIMESTAMP},
+      update_stamp = #{updateStamp,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

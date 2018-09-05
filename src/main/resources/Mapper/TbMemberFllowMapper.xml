@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blacksheep.mtm.dao.TbMemberFllowMapper">
+  <resultMap id="BaseResultMap" type="com.blacksheep.mtm.pojo.manager.TbMemberFllow">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="m_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="cc_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="fllow_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="fllow_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="area" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.blacksheep.mtm.pojo.manager.TbMemberFllow">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="m_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="cc_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="fllow_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="fllow_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="area" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="fllow_content" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+    </constructor>
+  </resultMap>
+
+  <resultMap id="ResultMapDto" type="com.blacksheep.mtm.dto.MemberFllowDto">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="m_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="m_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cc_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="cc_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="fllow_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="fllow_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="fllow_content" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, m_id, cc_id, fllow_type, fllow_time, area, create_time, update_time
+  </sql>
+  <sql id="Blob_Column_List">
+    fllow_content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_member_fllow
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectListByUserId" resultMap="ResultMapDto">
+SELECT a.id,b.id as m_id,b.username as m_name,c.username as cc_name,a.cc_id,a.fllow_content,a.fllow_type,a.fllow_time,a.create_time,a.update_time
+FROM tb_member_fllow a,tb_member b,tb_user c where (a.m_id = #{userId} AND b.id = #{userId} and a.cc_id = c.id)
+      ORDER BY
+      ${orderCol}
+      ${orderDir}
+    </select>
+  <select id="selectItemByCondition" resultMap="ResultMapDto">
+SELECT a.id,b.id as m_id,b.username as m_name,c.username as cc_name,a.cc_id,a.fllow_content,a.fllow_type,a.fllow_time,a.create_time,a.update_time
+FROM tb_member_fllow a,tb_member b,tb_user c where (a.m_id = b.id and a.cc_id = c.id) AND (a.fllow_content LIKE #{search}
+    OR
+    a.fllow_type LIKE #{search}
+    OR
+    a.area LIKE #{search}
+    OR
+    b.username LIKE #{search}
+    OR
+    c.username LIKE #{search})
+    ORDER BY
+    ${orderCol}
+    ${orderDir}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_member_fllow
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blacksheep.mtm.pojo.manager.TbMemberFllow">
+    insert into tb_member_fllow (id, m_id, cc_id, 
+      fllow_type, fllow_time, area, 
+      create_time, update_time, fllow_content
+      )
+    values (#{id,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{ccId,jdbcType=INTEGER}, 
+      #{fllowType,jdbcType=VARCHAR}, #{fllowTime,jdbcType=TIMESTAMP}, #{area,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{fllowContent,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blacksheep.mtm.pojo.manager.TbMemberFllow">
+    insert into tb_member_fllow
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="mId != null">
+        m_id,
+      </if>
+      <if test="ccId != null">
+        cc_id,
+      </if>
+      <if test="fllowType != null">
+        fllow_type,
+      </if>
+      <if test="fllowTime != null">
+        fllow_time,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="fllowContent != null">
+        fllow_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null">
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="ccId != null">
+        #{ccId,jdbcType=INTEGER},
+      </if>
+      <if test="fllowType != null">
+        #{fllowType,jdbcType=VARCHAR},
+      </if>
+      <if test="fllowTime != null">
+        #{fllowTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fllowContent != null">
+        #{fllowContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blacksheep.mtm.pojo.manager.TbMemberFllow">
+    update tb_member_fllow
+    <set>
+      <if test="mId != null">
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="ccId != null">
+        cc_id = #{ccId,jdbcType=INTEGER},
+      </if>
+      <if test="fllowType != null">
+        fllow_type = #{fllowType,jdbcType=VARCHAR},
+      </if>
+      <if test="fllowTime != null">
+        fllow_time = #{fllowTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fllowContent != null">
+        fllow_content = #{fllowContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.blacksheep.mtm.pojo.manager.TbMemberFllow">
+    update tb_member_fllow
+    set m_id = #{mId,jdbcType=INTEGER},
+      cc_id = #{ccId,jdbcType=INTEGER},
+      fllow_type = #{fllowType,jdbcType=VARCHAR},
+      fllow_time = #{fllowTime,jdbcType=TIMESTAMP},
+      area = #{area,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      fllow_content = #{fllowContent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blacksheep.mtm.pojo.manager.TbMemberFllow">
+    update tb_member_fllow
+    set m_id = #{mId,jdbcType=INTEGER},
+      cc_id = #{ccId,jdbcType=INTEGER},
+      fllow_type = #{fllowType,jdbcType=VARCHAR},
+      fllow_time = #{fllowTime,jdbcType=TIMESTAMP},
+      area = #{area,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+</mapper>

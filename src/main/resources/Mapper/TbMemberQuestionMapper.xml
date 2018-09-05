@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blacksheep.mtm.dao.TbMemberQuestionMapper">
+  <resultMap id="BaseResultMap" type="com.blacksheep.mtm.pojo.manager.TbMemberQuestion">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="m_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="age" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="create_stamp" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_stamp" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="target_class" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="profession" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="expect" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="competitor" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="m_class" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, m_id, age, create_stamp, update_stamp, target_class, profession, expect, competitor, 
+    m_class
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_member_question
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_member_question
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blacksheep.mtm.pojo.manager.TbMemberQuestion">
+    insert into tb_member_question (id, m_id, age, 
+      create_stamp, update_stamp, target_class, 
+      profession, expect, competitor, 
+      m_class)
+    values (#{id,jdbcType=INTEGER}, #{mId,jdbcType=INTEGER}, #{age,jdbcType=VARCHAR}, 
+      now(), now(), #{targetClass,jdbcType=VARCHAR},
+      #{profession,jdbcType=VARCHAR}, #{expect,jdbcType=VARCHAR}, #{competitor,jdbcType=VARCHAR}, 
+      #{mClass,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blacksheep.mtm.pojo.manager.TbMemberQuestion">
+    insert into tb_member_question
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="mId != null">
+        m_id,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+
+      <if test="targetClass != null">
+        target_class,
+      </if>
+      <if test="profession != null">
+        profession,
+      </if>
+      <if test="expect != null">
+        expect,
+      </if>
+      <if test="competitor != null">
+        competitor,
+      </if>
+      <if test="mClass != null">
+        m_class,
+      </if>
+        create_stamp,
+        update_stamp,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mId != null">
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=VARCHAR},
+      </if>
+
+      <if test="targetClass != null">
+        #{targetClass,jdbcType=VARCHAR},
+      </if>
+      <if test="profession != null">
+        #{profession,jdbcType=VARCHAR},
+      </if>
+      <if test="expect != null">
+        #{expect,jdbcType=VARCHAR},
+      </if>
+      <if test="competitor != null">
+        #{competitor,jdbcType=VARCHAR},
+      </if>
+      <if test="mClass != null">
+        #{mClass,jdbcType=VARCHAR},
+      </if>
+      now(),now()
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blacksheep.mtm.pojo.manager.TbMemberQuestion">
+    update tb_member_question
+    <set>
+      <if test="mId != null">
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=VARCHAR},
+      </if>
+
+      <if test="targetClass != null">
+        target_class = #{targetClass,jdbcType=VARCHAR},
+      </if>
+      <if test="profession != null">
+        profession = #{profession,jdbcType=VARCHAR},
+      </if>
+      <if test="expect != null">
+        expect = #{expect,jdbcType=VARCHAR},
+      </if>
+      <if test="competitor != null">
+        competitor = #{competitor,jdbcType=VARCHAR},
+      </if>
+      <if test="mClass != null">
+        m_class = #{mClass,jdbcType=VARCHAR},
+      </if>
+      <if test="createStamp != null">
+        create_stamp = #{createStamp,jdbcType=TIMESTAMP},
+      </if>
+        update_stamp =now()
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blacksheep.mtm.pojo.manager.TbMemberQuestion">
+    update tb_member_question
+    set m_id = #{mId,jdbcType=INTEGER},
+      age = #{age,jdbcType=VARCHAR},
+      create_stamp = #{createStamp,jdbcType=TIMESTAMP},
+      update_stamp = now(),
+      target_class = #{targetClass,jdbcType=VARCHAR},
+      profession = #{profession,jdbcType=VARCHAR},
+      expect = #{expect,jdbcType=VARCHAR},
+      competitor = #{competitor,jdbcType=VARCHAR},
+      m_class = #{mClass,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectItemByCondition" resultType="com.blacksheep.mtm.pojo.manager.TbMemberQuestion"></select>
+  <delete id="deleteBatchById"></delete>
+
+</mapper>

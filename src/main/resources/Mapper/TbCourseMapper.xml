@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blacksheep.mtm.dao.TbCourseMapper">
+  <resultMap id="BaseResultMap" type="com.blacksheep.mtm.pojo.manager.TbCourse">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="teacher" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="date" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="reserve_time" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="status" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="create_stamp" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_stamp" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, teacher, date, reserve_time, status, create_stamp,
+    update_stamp
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_course
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_course
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blacksheep.mtm.pojo.manager.TbCourse">
+    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_course (id, teacher,
+      date, reserve_time,
+      status, create_stamp,
+      update_stamp)
+    values (#{id,jdbcType=INTEGER}, #{teacher,jdbcType=INTEGER},
+      #{date,jdbcType=VARCHAR}, #{reserveTime,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, now(),now())
+  </insert>
+  <insert id="insertSelective" parameterType="com.blacksheep.mtm.pojo.manager.TbCourse">
+    insert into tb_course
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="teacher != null">
+        teacher,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="reserveTime != null">
+        reserve_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+        create_stamp,
+        update_stamp,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="teacher != null">
+        #{teacher,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveTime != null">
+        #{reserveTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      now(),now()
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blacksheep.mtm.pojo.manager.TbCourse">
+    update tb_course
+    <set>
+
+      <if test="teacher != null">
+        teacher = #{teacher,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveTime != null">
+        reserve_time = #{reserveTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createStamp != null">
+        create_stamp = #{createStamp,jdbcType=TIMESTAMP},
+      </if>
+        update_stamp = now(),
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blacksheep.mtm.pojo.manager.TbCourse">
+    update tb_course
+    set
+      teacher = #{teacher,jdbcType=INTEGER},
+      date = #{date,jdbcType=VARCHAR},
+      reserve_time = #{reserveTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT},
+      create_stamp = #{createStamp,jdbcType=TIMESTAMP},
+      update_stamp = now(),
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectItemByMultiCondition" resultMap="BaseResultMap">
+    SELECT * FROM tb_course
+    WHERE ( teacher LIKE #{search}   OR
+    id LIKE #{search})
+    <if test="minDate != null and minDate != '' and maxDate != null and maxDate != ''">
+      AND to_date(#{date},'YYYY/MM/DD HH24:mi:ss') BETWEEN #{minDate} AND #{maxDate}
+    </if>
+    ORDER BY
+    ${orderCol}
+    ${orderDir}
+  </select>
+
+  <select id="selectItemByCondition" resultMap="BaseResultMap">
+    SELECT * FROM tb_course
+    WHERE (
+      teacher LIKE #{search}
+    OR
+    id LIKE #{search})
+    ORDER BY
+    ${orderCol}
+    ${orderDir}
+  </select>
+
+</mapper>
